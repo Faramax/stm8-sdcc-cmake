@@ -1,8 +1,9 @@
 set(CMAKE_SYSTEM_NAME Generic)
 
-set(CMAKE_C_COMPILER sdcc)
-set(CMAKE_OBJCOPY sdobjcopy CACHE INTERNAL "objcopy tool")
-set(CMAKE_PACKIHX packihx CACHE INTERNAL "packihx tool")
+set(SDCC_PATH "/home/sergey/projects/mpc/toolchain/sdcc-4.4.0-rc2/bin/")
+set(CMAKE_C_COMPILER ${SDCC_PATH}sdcc)
+set(CMAKE_OBJCOPY ${SDCC_PATH}sdobjcopy CACHE INTERNAL "objcopy tool")
+set(CMAKE_PACKIHX ${SDCC_PATH}packihx CACHE INTERNAL "packihx tool")
 
 set(CMAKE_STATIC_LIBRARY_PREFIX "")
 set(CMAKE_STATIC_LIBRARY_SUFFIX ".lib")
@@ -21,7 +22,7 @@ find_program(SDCCLIB_EXECUTABLE sdcclib)
 set(CMAKE_AR "${SDCCLIB_EXECUTABLE}" CACHE FILEPATH "The sdcc librarian" FORCE)
 
 if(NOT DEFINED CMAKE_C_FLAGS_INIT)
-    set(CMAKE_C_FLAGS_INIT "-mstm8 --std-c99")
+    set(CMAKE_C_FLAGS_INIT "-mstm8 --std-c23")
 endif()
 
 if(NOT DEFINED CMAKE_EXE_LINKER_FLAGS_INIT)
