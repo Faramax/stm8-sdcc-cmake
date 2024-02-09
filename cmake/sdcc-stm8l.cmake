@@ -48,3 +48,13 @@ function(STM8_SET_CHIP_DEFINITIONS TARGET CHIP_TYPE)
     endif()
     set_target_properties(${TARGET} PROPERTIES COMPILE_DEFINITIONS "${TARGET_DEFS}")
 endfunction()
+
+function(STM8_SET_PROJECT_DEFINITIONS CHIP_TYPE)
+    message(STATUS "STM8_SET_PROJECT_DEFINITIONS with CHIP_TYPE:${CHIP_TYPE}")
+    list(FIND STM8_CHIP_TYPES ${CHIP_TYPE} TYPE_INDEX)
+    if(TYPE_INDEX EQUAL -1)
+        message(FATAL_ERROR "Invalid/unsupported chip type: ${CHIP_TYPE}\n\
+            Available chip types: STM8L..${STM8_CHIP_TYPES}")
+    endif()
+    add_compile_definitions(STM8L${CHIP_TYPE})
+endfunction()

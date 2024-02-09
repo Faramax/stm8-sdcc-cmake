@@ -42,3 +42,5 @@ set(CMAKE_C_CREATE_SHARED_LIBRARY "")
 set(CMAKE_C_CREATE_MODULE_LIBRARY "")
 
 add_definitions(-D__SDCC__)
+
+include(sdcc-stm8)
