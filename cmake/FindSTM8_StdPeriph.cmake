@@ -31,7 +31,7 @@ elseif(STM8_CHIP_TYPE MATCHES "05X|15X")
     set(STM8_STD_SOURCES "")
     set(STM8_FIND_PREFIX "L15x")
 
-elseif(STM8_CHIP_TYPE MATCHES "[012]0[3578]")
+elseif((STM8_CHIP_TYPE MATCHES "[012]0[3578]") OR (STM8_CHIP_TYPE MATCHES "[56]2[12468A]"))
 
     set(STM8_STD_COMPONENTS
             adc1 adc2 awu beep can
@@ -50,7 +50,11 @@ endif()
 if(NOT STM8_StdPeriph_FIND_COMPONENTS)
     set(STM8_StdPeriph_FIND_COMPONENTS ${STM8_STD_COMPONENTS})
     message(STATUS "No STM8_StdPeriph components selected, using all available for current series: ${STM8_StdPeriph_FIND_COMPONENTS}")
+else ()
+    message(STATUS "Selected STM8_StdPeriph components: ${STM8_STD_COMPONENTS}")
+    message(STATUS "Available STM8_StdPeriph components: ${STM8_STD_COMPONENTS}")
 endif()
+
 
 foreach(COMP ${STM8_StdPeriph_FIND_COMPONENTS})
     list(FIND STM8_STD_COMPONENTS ${COMP} INDEX)
